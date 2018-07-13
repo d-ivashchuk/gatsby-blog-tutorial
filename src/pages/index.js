@@ -7,8 +7,13 @@ const IndexPage = ({ data }) => {
   return (
     <div>
       {data.allMarkdownRemark.edges.map(({ node }) => (
-        <div key={node.frontmatter.date} className="article-box">
-          <h3 className="title">{node.frontmatter.title}</h3>
+        <div key={node.id} className="article-box">
+          <Link
+            to={node.fields.slug}
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <h3 className="title">{node.frontmatter.title}</h3>
+          </Link>
           <p className="author">{node.frontmatter.author}</p>
           <p className="date">
             {node.frontmatter.date} {node.timeToRead}min read
@@ -19,6 +24,7 @@ const IndexPage = ({ data }) => {
     </div>
   )
 }
+
 export default IndexPage
 
 export const query = graphql`
@@ -27,6 +33,9 @@ export const query = graphql`
       totalCount
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             title
             date

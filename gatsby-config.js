@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/gatsby-blog-tutorial`,
   siteMetadata: {
     title: 'The Gray Web Blog',
   },
